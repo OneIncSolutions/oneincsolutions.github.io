@@ -1,211 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>TIAT - The Teacher Interactive Assessment Tool Website</title>
+  <title>TIAT - The Teacher Interactive Assessment Tool Website</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom fonts for this template -->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+  <!-- Custom fonts for this template -->
+  <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
-    <!-- Plugin CSS -->
-    <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
+  <!-- Plugin CSS -->
+  <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
 
-    <!-- Custom styles for this template -->
-    <link href="css/new-age.min.css" rel="stylesheet">
-    
-    <script >
-      $('#requestbtn').on('click', function () {
+  <!-- Custom styles for this template -->
+  <link href="css/new-age.min.css" rel="stylesheet">
 
-          $('#requestform').show('slow');
-        });
-    </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
 
-  </head>
+      $("#opengform").click(function () {
+        $("#googleform").show();
+        $('#googleform').get(0).scrollIntoView()
+      });
+    });
+
+    $('#bootstrapForm').submit(function (event) {
+      event.preventDefault()
+      var extraData = {}
+      $('#bootstrapForm').ajaxSubmit({
+        data: extraData,
+        dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
+        error: function () {
+          // Submit of form should be successful but JSONP callback will fail because Google Forms
+          // does not support it, so this is handled as a failure.
+          alert('Form Submitted. Thanks.')
+          // You can also redirect the user to a custom thank-you page:
+          // window.location = 'http://www.mydomain.com/thankyoupage.html'
+        }
+      })
+    });
+  </script>
+  <style>
+    input {
+      outline: 0;
+      border-width: 0 0 2px;
+      border-color: blue
+    }
+
+    input:focus {
+      border-color: green
+    }
+  </style>
+
+</head>
 
 
-  <body id="page-top">
+<body id="page-top">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">TIAT APP</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#download">Download</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#features">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-            </li>
-          </ul>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">TIAT APP</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#download">Download</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#features">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-lg-7 my-auto">
+          <div class="header-content mx-auto">
+            <h1 class="mb-5">Smart, Easy,Informative student assessment. Get the most out of your students with TIAT!</h1>
+            <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">TRY TIAT NOW!</a>
+          </div>
+        </div>
+        <div class="col-lg-5 my-auto embed-responsive embed-responsive-4by3">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/m_oQghERrPA" allowfullscreen>
+          </iframe>
+
         </div>
       </div>
-    </nav>
+    </div>
+  </header>
 
-    <header class="masthead">
-      <div class="container h-100">
-        <div class="row h-100">
-          <div class="col-lg-7 my-auto">
+  <section class="download bg-primary text-center" id="download">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <h2 class="section-heading">Maximize your student potential with TIAT!</h2>
+          <p>TIAT is available on Windows, Mac and Linux! Request the app now to get started!</p>
+          <div class="badges">
             <div class="header-content mx-auto">
-              <h1 class="mb-5">Smart, Easy,Informative student assessment. Get the most out of your students with TIAT!</h1>
-              <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">TRY TIAT NOW!</a>
+              <a id="opengform" class="btn btn-outline btn-xl ">Request TIAT now!</a>
             </div>
           </div>
-          <div class="col-lg-5 my-auto embed-responsive embed-responsive-4by3">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light text-center" id="googleform" style="display: none;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="header-content mx-auto">
+            <form action="https://docs.google.com/forms/d/e/1FAIpQLSfW5C2o2AHS1wgiHort2621sDxArRuPeGHH5wXoTyMgKVK36A/formResponse" target="_self"
+              id="bootstrapForm" method="POST">
+              <fieldset>
+                <h2 class="section-heading">Order Form</h2>
+                <p class="text-muted">Please complete this form to order TIAT. Contact us at +27788673138 or mafireyi@gmail.com</p>
+              </fieldset>
+              <fieldset>
+                <legend for="">Email</legend>
+                <div class="form-group">
+                  <input style= "outline: 0;border-width: 0 0 2px;border-color: gray; background: transparent;" id="emailAddress" type="email" name="emailAddress" class="form-control" required>
+                </div>
+              </fieldset>
+
+
+              <!-- Field type: "choices" id: "1795050495" -->
+              <fieldset>
+                <legend for="1795050495">Are you a new or existing customer?</legend>
+                <div class="form-group">
+                  <div style="text-align:left;" class="radio">
+                    <label><input type="radio" name="entry.1000057" value="I am a new customer"> I am a new customer</label>
+                  </div>
+                  <div style="text-align:left;" class="radio">
+                    <label><input type="radio" name="entry.1000057" value="I am an existing customer"> I am an existing customer</label>
+                  </div>
+                </div>
+              </fieldset>
+
+
+              <!-- Field type: "dropdown" id: "1941031617" -->
+              <fieldset>
+                <legend for="1941031617">What is the item you would like to order?</legend>
+                <div class="form-group">
+                  <p style="text-align:left" class="help-block">Please choose the product you want to order</p>
+                  <select id="1941031617" name="entry.1000027" class="form-control">
+                    <option  value="The Teacher Interactive Assessment Tool (TIAT)">The Teacher Interactive Assessment Tool (TIAT)</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </fieldset>
+
+
+              <!-- Field type: "title" id: "1280253638" -->
+              <fieldset>
+                <legend for="1280253638">Contact info</legend>
+                <div class="form-group">
+                </div>
+              </fieldset>
+
+
+              <!-- Field type: "short" id: "599451360" -->
+              <fieldset>
+                <legend for="599451360">Your name</legend>
+                <div class="form-group">
+                  <input style= "outline: 0;border-width: 0 0 2px;border-color: blue; background: transparent;" id="1000020" type="text" name="entry.1000020" class="form-control" required>
+                </div>
+              </fieldset>
+
+
+              <!-- Field type: "short" id: "1319303351" -->
+              <fieldset>
+                <legend for="1319303351">Name of School/College</legend>
+                <div class="form-group">
+                  <input style= "outline: 0;border-width: 0 0 2px;border-color: blue; background: transparent;" id="772428994" type="text" name="entry.772428994" class="form-control" required>
+                </div>
+              </fieldset>
+
+
+              <!-- Field type: "short" id: "1183334637" -->
+              <fieldset>
+                <legend for="1183334637">Phone number</legend>
+                <div class="form-group">
+                  <input style= "outline: 0;border-width: 0 0 2px;border-color: blue; background: transparent;" id="1000022" type="text" name="entry.1000022" class="form-control" required>
+                </div>
+              </fieldset>
+
+
+              <!-- Field type: "short" id: "1146347585" -->
+              <fieldset>
+                <legend for="1146347585">E-mail</legend>
+                <div class="form-group">
+                  <input style= "outline: 0;border-width: 0 0 2px;border-color: blue; background: transparent;" id="1000025" type="text" name="entry.1000025" class="form-control" required>
+                </div>
+              </fieldset>
+
+
+              <!-- Field type: "checkboxes" id: "343833981" -->
+              <fieldset>
+                <legend for="343833981">Preferred contact method</legend>
+                <div style="text-align:left;" class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="entry.1000026" value="Phone" required> Phone
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input style="text-align:left;" type="checkbox" name="entry.1000026" value="Email" required> Email
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+
+
+              <!-- Field type: "paragraph" id: "1870700300" -->
+              <fieldset>
+                <legend for="1870700300">Questions and comments</legend>
+                <div class="form-group">
+                  <textarea id="1000023" name="entry.1000023" class="form-control"></textarea>
+                </div>
+              </fieldset>
+
+              <input type="hidden" name="fvv" value="1">
+              <input type="hidden" name="fbzx" value="3119788785385047354">
+              <!--
+                CAVEAT: In multipages (multisection) forms, *pageHistory* field tells to google what sections we've currently completed.
+                This usually starts as "0" for the first page, then "0,1" in the second page... up to "0,1,2..N" in n-th page.
+                Keep this in mind if you plan to change this code to recreate any sort of multipage-feature in your exported form.
+                We're setting this to the total number of pages in this form because we're sending all fields from all the section together.
+            -->
+              <input type="hidden" name="pageHistory" value="0">
+
+              <input class="btn btn-primary" type="submit" value="Submit">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-heading text-center">
+        <h2>Important Features</h2>
+        <p class="text-muted">Check out what you can do with TIAT!</p>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 my-auto">
+          <div class="embed-responsive embed-responsive-1by1">
             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/m_oQghERrPA" allowfullscreen>
             </iframe>
-            
           </div>
         </div>
-      </div>
-    </header>
-
-    <section class="download bg-primary text-center" id="download">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 mx-auto">
-            <h2 class="section-heading">Maximize your student potential with TIAT!</h2>
-            <p>TIAT is available on Windows, Mac and Linux! Request the app now to get started!</p>
-            <div class="badges">
-              <div class="header-content mx-auto">
-                <a href="#requestform" id="requestbtn" class="btn btn-outline btn-xl js-scroll-trigger">Request TIAT now!</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="bg-light text-center" id="requestform" style="display: none;">
-      <div class="header-content mx-auto">google form here</div>
-    </section>
-
-    <section class="features" id="features">
-      <div class="container">
-        <div class="section-heading text-center">
-          <h2>Important Features</h2>
-          <p class="text-muted">Check out what you can do with TIAT!</p>
-          <hr>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 my-auto">
-            <div class="embed-responsive embed-responsive-1by1">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/m_oQghERrPA" allowfullscreen>
-              </iframe>
-            </div>
-          </div>
-          <div class="col-lg-8 my-auto">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-note text-primary"></i>
-                    <h3>Smart Recording</h3>
-                    <p class="text-muted">Record learner marks in an informative manner</p>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-screen-desktop text-primary"></i>
-                    <h3>Quick performance analysis</h3>
-                    <p class="text-muted">Perform individual analysis on learner performance for each task given.</p>
-                  </div>
+        <div class="col-lg-8 my-auto">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="feature-item">
+                  <i class="icon-note text-primary"></i>
+                  <h3>Smart Recording</h3>
+                  <p class="text-muted">Record learner marks in an informative manner</p>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-graph text-primary"></i>
-                    <h3>Captivating Visualization</h3>
-                    <p class="text-muted">View informative performance reports with graphs and tables.</p>
-                  </div>
+              <div class="col-lg-6">
+                <div class="feature-item">
+                  <i class="icon-screen-desktop text-primary"></i>
+                  <h3>Quick performance analysis</h3>
+                  <p class="text-muted">Perform individual analysis on learner performance for each task given.</p>
                 </div>
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-support text-primary"></i>
-                    <h3>24/7 Support</h3>
-                    <p class="text-muted">Get 24/7 support from our TIAT team. We provide application maintenance as well as training and workshops!</p>
-                  </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="feature-item">
+                  <i class="icon-graph text-primary"></i>
+                  <h3>Captivating Visualization</h3>
+                  <p class="text-muted">View informative performance reports with graphs and tables.</p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="feature-item">
+                  <i class="icon-support text-primary"></i>
+                  <h3>24/7 Support</h3>
+                  <p class="text-muted">Get 24/7 support from our TIAT team. We provide application maintenance as well as
+                    training and workshops!</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="contact bg-primary" id="contact">
-      <div class="container">
-        <h2>We
-          <i class="fa fa-heart"></i>
-          new friends!</h2>
-        <ul class="list-inline list-social">
-          <li class="list-inline-item social-twitter">
-            <a href="#">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-facebook">
-            <a href="#">
-              <i class="fa fa-facebook"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-google-plus">
-            <a href="#">
-              <i class="fa fa-google-plus"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
+  <section class="contact bg-primary" id="contact">
+    <div class="container">
+      <h2>We
+        <i class="fa fa-heart"></i>
+        new friends!</h2>
+      <ul class="list-inline list-social">
+        <li class="list-inline-item social-twitter">
+          <a href="#">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-facebook">
+          <a href="#">
+            <i class="fa fa-facebook"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-google-plus">
+          <a href="#">
+            <i class="fa fa-google-plus"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-    <footer>
-      <div class="container">
-        <p>&copy; Your Website 2018. All Rights Reserved.</p>
-        <ul class="list-inline">
-          <li class="list-inline-item">
-            <a href="#">Privacy</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">Terms</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">FAQ</a>
-          </li>
-        </ul>
-      </div>
-    </footer>
+  <footer>
+    <div class="container">
+      <p>&copy; Your Website 2018. All Rights Reserved.</p>
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <a href="#">Privacy</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#">Terms</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#">FAQ</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for this template -->
-    <script src="js/new-age.min.js"></script>
+  <!-- Custom scripts for this template -->
+  <script src="js/new-age.min.js"></script>
 
-  </body>
+</body>
 
 </html>
